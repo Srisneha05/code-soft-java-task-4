@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+public class QuizApplication {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int score = 0;
+        int questionNumber = 1;
+        int totalQuestions = 3; // Change this to the total number of questions in your quiz
+        int timerSeconds = 10;
+
+        while (questionNumber <= totalQuestions) {
+            System.out.println("Question " + questionNumber + ":");
+            displayQuestion(questionNumber);
+
+            // Timer
+            long startTime = System.currentTimeMillis();
+            while (System.currentTimeMillis() - startTime < timerSeconds * 1000) {
+                // Wait for the timer to expire
+            }
+
+            // Display options and get user input
+            System.out.println("Enter your answer:");
+            String userAnswer = scanner.nextLine().trim().toLowerCase();
+
+            // Check the answer
+            if (checkAnswer(questionNumber, userAnswer)) {
+                System.out.println("Correct!\n");
+                score++;
+            } else {
+                System.out.println("Incorrect!\n");
+            }
+
+            questionNumber++;
+        }
+
+        System.out.println("Quiz completed!");
+        System.out.println("Your score: " + score + " out of " + totalQuestions);
+
+        scanner.close();
+    }
+
+    private static void displayQuestion(int questionNumber) {
+        // Modify this method to display the appropriate question and options
+        // based on the questionNumber
+        switch (questionNumber) {
+            case 1:
+                System.out.println("What is the capital of France?");
+                System.out.println("a) Paris");
+                System.out.println("b) London");
+                System.out.println("c) Berlin");
+                System.out.println("d) Rome");
+                break;
+            case 2:
+                System.out.println("What is the largest planet in our solar system?");
+                System.out.println("a) Earth");
+                System.out.println("b) Jupiter");
+                System.out.println("c) Mars");
+                System.out.println("d) Venus");
+                break;
+            // Add more cases for additional questions
+            default:
+                break;
+        }
+    }
+
+    private static boolean checkAnswer(int questionNumber, String userAnswer) {
+        // Modify this method to check the user's answer against the correct answer
+        // based on the questionNumber
+        switch (questionNumber) {
+            case 1:
+                return userAnswer.equals("a") || userAnswer.equalsIgnoreCase("Paris");
+            case 2:
+                return userAnswer.equals("b") || userAnswer.equalsIgnoreCase("Jupiter");
+            // Add more cases for additional questions
+            default:
+                return false;
+        }
+    }
+}
